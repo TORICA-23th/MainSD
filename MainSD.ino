@@ -3,7 +3,7 @@
 
 #define SerialIN  Serial1
 
-int cs_SD = 28;
+int cs_SD = 26;
 TORICA_SD sd(cs_SD);
 char SD_BUF[256]; 
 
@@ -15,8 +15,8 @@ Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
   Serial1.setFIFOSize(1024);
-  Serial.begin(460800);
-  Serial1.begin(460800);
+  Serial.begin(115200);
+  Serial1.begin(115200);
 
   sd.begin();
 
