@@ -7,8 +7,9 @@ int cs_SD = 26;
 TORICA_SD sd(cs_SD);
 char SD_BUF[256]; 
 
-int Power = 11;
-int PIN  = 12;
+const int Power = 11;
+const int PIN  = 12;
+const int LED = 27;
 #define NUMPIXELS 1
 
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
@@ -24,10 +25,15 @@ void setup() {
   pinMode(25, OUTPUT);
   pinMode(17, OUTPUT);
 
+  pinMode(LED, OUTPUT);
+  digitalWrite(LED, LOW);
+
   delay(100);
   
   pinMode(Power, OUTPUT);
+
   digitalWrite(Power, HIGH);
+  
   pixels.begin();
 
   while (SerialIN.available()) {
@@ -44,6 +50,7 @@ void LEDtoggle(){
   digitalWrite(25, !digitalRead(25));
   digitalWrite(17, !digitalRead(25));
   digitalWrite(16, !digitalRead(25));
+  digitalWrite(LED, !digitalRead(LED));
 }
 
 void loop() {
